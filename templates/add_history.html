@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block title %}Agregar Historia Clínica{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-6">Agregar Historia Clínica</h1>
+<form method="POST" class="max-w-lg space-y-6">
+    <div>
+        <label for="paciente_id" class="block mb-1 font-medium">Paciente</label>
+        <select id="paciente_id" name="paciente_id" required
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">Seleccione un paciente</option>
+            {% for paciente in pacientes %}
+            <option value="{{ paciente.id }}">{{ paciente.nombre }} {{ paciente.apellido }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="doctor_id" class="block mb-1 font-medium">Doctor</label>
+        <select id="doctor_id" name="doctor_id" required
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">Seleccione un doctor</option>
+            {% for doctor in doctores %}
+            <option value="{{ doctor.id }}">{{ doctor.nombre }} {{ doctor.apellido }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="fecha" class="block mb-1 font-medium">Fecha</label>
+        <input type="date" id="fecha" name="fecha" required
+               class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+        <label for="descripcion" class="block mb-1 font-medium">Descripción</label>
+        <textarea id="descripcion" name="descripcion" required placeholder="Descripción de la historia clínica"
+                  class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+    <div>
+        <label for="medicamentos" class="block mb-1 font-medium">Medicamentos</label>
+        <textarea id="medicamentos" name="medicamentos" placeholder="Medicamentos recetados"
+                  class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+    <div>
+        <label for="diagnostico" class="block mb-1 font-medium">Diagnóstico</label>
+        <textarea id="diagnostico" name="diagnostico" placeholder="Diagnóstico"
+                  class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+    <div>
+        <label for="tratamiento" class="block mb-1 font-medium">Tratamiento</label>
+        <textarea id="tratamiento" name="tratamiento" placeholder="Tratamiento"
+                  class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+    <div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Agregar Historia Clínica</button>
+        <a href="{{ url_for('histories') }}" class="ml-4 text-gray-600 hover:underline">Cancelar</a>
+    </div>
+</form>
+{% endblock %}
