@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registros Médicos - VitalSoft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 font-sans" style="font-family: 'Inter', sans-serif;">
+    <header class="bg-gray-100 shadow p-4">
+        <h1 class="text-2xl font-semibold text-center">Registros Médicos</h1>
+    </header>
+    <main class="max-w-5xl mx-auto p-6">
+        {% if registros %}
+        <table class="min-w-full bg-gray-50 border border-gray-300 rounded shadow">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="py-3 px-6 text-left font-semibold">Paciente</th>
+                    <th class="py-3 px-6 text-left font-semibold">Descripción</th>
+                    <th class="py-3 px-6 text-left font-semibold">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                <tr class="border-t border-gray-300 hover:bg-gray-100 transition">
+                    <td class="py-3 px-6">{{ registro.paciente.nombre }} {{ registro.paciente.apellido }}</td>
+                    <td class="py-3 px-6">{{ registro.descripcion }}</td>
+                    <td class="py-3 px-6">{{ registro.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-center text-gray-600">No hay registros médicos disponibles.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
